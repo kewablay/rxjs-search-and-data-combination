@@ -1,0 +1,13 @@
+<input id="search" type="search" />
+@if(loading) {
+<p>Loading...</p>
+}
+
+<div>
+  @for(result of searchResults; track result) {
+  <li>{{ result }}</li>
+  } @if(error){
+  <p>{{ error }}</p>
+
+  }
+</div>
