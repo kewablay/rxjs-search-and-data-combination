@@ -1,9 +1,11 @@
+<h2>Data Combination</h2>
+
 @if(loading) {
 <p>Loading...</p>
 } @if(error) {
 <p class="error">{{ error }}</p>
 } @if(combinedData) {
-<h2>User: {{ combinedData.user }}</h2>
+<h3>User: {{ combinedData.user }}</h3>
 <ul>
   @for(post of combinedData.posts; track post) {
   <p>{{ post }}</p>

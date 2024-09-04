@@ -1,13 +1,13 @@
+<h2>Search</h2>
 <input id="search" type="search" />
-@if(loading) {
-<p>Loading...</p>
-}
 
-<div>
-  @for(result of searchResults; track result) {
-  <li>{{ result }}</li>
+<div id="results-area">
+  @if(loading) {
+  <p>Loading...</p>
+  } @for(result of searchResults; track result) {
+  <p>{{ result }}</p>
   } @if(error){
-  <p>{{ error }}</p>
+  <p class="error">{{ error }}</p>
 
   }
 </div>
