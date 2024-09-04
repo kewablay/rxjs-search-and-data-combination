@@ -17,6 +17,10 @@ export class DataCombinationComponent {
     this.loadCombinedData();
   }
 
+  refetchCombinedData () {
+    this.loadCombinedData();
+  }
+
   private loadCombinedData() {
     this.loading = true;
     this.error = null;
