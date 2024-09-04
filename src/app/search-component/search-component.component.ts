@@ -30,13 +30,11 @@ export class SearchComponentComponent {
   searchResults: string[] = [];
 
   ngOnInit() {
-    // Get the search input element
     const searchInput = document.getElementById('search') as HTMLInputElement;
 
-    // Create an observable from input events
     fromEvent(searchInput, 'input')
       .pipe(
-        map((event: Event) => (event.target as HTMLInputElement).value), // Extract input value
+        map((event: Event) => (event.target as HTMLInputElement).value), 
         debounceTime(300), // Debounce for 300ms
         tap(() => (this.error = "must be more than 2 characters")),
         filter((value: string) => value.length > 2), // Filter out short queries
@@ -44,7 +42,6 @@ export class SearchComponentComponent {
           this.loading = true;
           this.error = null;
         }),
-        // Use switchMap to handle search and cancel previous requests
         switchMap((term: string) =>
           this.simulateSearch(term).pipe(
             tap(() => (this.loading = true)),
@@ -52,18 +49,18 @@ export class SearchComponentComponent {
             catchError((err) => {
               this.loading = false;
               this.error = 'Failed to fetch search results.';
-              return of([]); // Return an empty array on error
+              return of([]); 
             }),
             finalize(() => (this.loading = false))
           )
         )
       )
       .subscribe((results: string[]) => {
-        this.searchResults = results; // Update the results to display
+        this.searchResults = results; 
       });
   }
 
-  // Simulate an API search that returns an observable of string arrays
+
   private simulateSearch(query: string): Observable<string[]> {
     // Simulate a result set based on the query
     return of([
