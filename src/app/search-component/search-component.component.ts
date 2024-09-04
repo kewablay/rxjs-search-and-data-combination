@@ -38,6 +38,7 @@ export class SearchComponentComponent {
       .pipe(
         map((event: Event) => (event.target as HTMLInputElement).value), // Extract input value
         debounceTime(300), // Debounce for 300ms
+        tap(() => (this.error = "must be more than 2 characters")),
         filter((value: string) => value.length > 2), // Filter out short queries
         tap(() => {
           this.loading = true;
